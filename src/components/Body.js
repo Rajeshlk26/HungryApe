@@ -1,0 +1,61 @@
+import RestaurantCard from "./RestaurantCard"
+import { useEffect, useState } from "react"
+import Shimmer from './Shimmer'
+
+const Body = () => {
+  const [listOfRestaurants, setlistOfRestaurants] =useState([]);
+  const [filteredRestaurant, setFilteredrestaurant] = useState([]);
+
+  const [searchtext, setSearchtext] = useState("");
+
+  useEffect(()=>{
+    fetchData();
+  }, [])
+
+  const fetchData = async() => {
+    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+    const json = await data.json();
+    const restaurants = json?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+    setlistOfRestaurants(restaurants);
+    setFilteredrestaurant(restaurants)
+    console.log(restaurants)
+  };
+
+    return  listOfRestaurants.length===0?
+    (<Shimmer />
+    ):(
+      <div className="body">
+        <div className="filter">
+          <div className="search">
+            <input type="text" className="search-box" value={searchtext} 
+            onChange={(e) => {setSearchtext(e.target.value)}}/>
+            <button className="searchbtn"
+            onClick={() => {
+              console.log(searchtext)
+              const filteredRes =listOfRestaurants.filter((res) =>
+                res.info.name.toLowerCase().includes(searchtext.toLowerCase())
+              );
+              setFilteredrestaurant(filteredRes)
+            }}
+            >Search</button>
+          </div>
+          <button className="filter_btn" 
+          onClick={() => {
+            const filterdList=filteredRestaurant.filter(
+              (res) => res.info.avgRating>4.5)
+              setFilteredrestaurant(filterdList)
+              console.log(filterdList)
+          }}
+          >
+          Top Rated Restaurant</button>
+        </div>
+        <div className="res-container">
+          {filteredRestaurant.map((restaurant, index) => (
+          <RestaurantCard key={restaurant.info.id} resData={restaurant} /> 
+          ))}
+        </div>
+      </div>
+    )
+  }
+
+export default Body;

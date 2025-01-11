@@ -22,5 +22,31 @@
 - Lazy mode
 - Different dev and production bundles
 
+#Restaurant APP
+/*Components
+1-Header
+*logo
+*Nav-Items
+2-Body
+*Search
+*RestaurantContainer
+  -img
+  -Name of res, star rating, cuisine, delivery time
+3-Footer
+*Copyright
+*Links
+*Contact
+*/
 
 
+Two type of exports
+
+-Default export/import
+
+export default Component;
+import Component from "path";
+
+-Named export/Import
+
+Export const component/ {Component 1, Component 2}
+Import {Component} from "path";
