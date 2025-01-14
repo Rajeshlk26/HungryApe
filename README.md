@@ -39,7 +39,7 @@
 */
 
 
-Two type of exports
+#Two type of exports
 
 -Default export/import
 
@@ -50,3 +50,13 @@ import Component from "path";
 
 Export const component/ {Component 1, Component 2}
 Import {Component} from "path";
+
+#React Hooks
+(Normal JS utility functions)
+-UseState() - superpowerful state variables in react
+-Useffect() - Performs side effects in the components depending on the dependency array.
+it is called every time any state if the dependency array is modified/updated.
+
+#Routing in the web apps
+-Client side routing
+-Server side routing 
