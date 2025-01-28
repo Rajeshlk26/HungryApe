@@ -1,8 +1,9 @@
 import RestaurantCard from "./RestaurantCard";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { RestaurantCard_API } from "../utils/constants";
 
 const Body = () => {
   const [listOfRestaurants, setlistOfRestaurants] = useState([]);
@@ -16,9 +17,7 @@ const Body = () => {
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
+    const data = await fetch(RestaurantCard_API);
     const json = await data.json();
     const restaurants =
       json?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
@@ -36,18 +35,18 @@ const Body = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <div className="search">
+      <div className="flex">
+        <div className="m-4 p-4">
           <input
             type="text"
-            className="search-box"
+            className="border border-solid border-black"
             value={searchtext}
             onChange={(e) => {
               setSearchtext(e.target.value);
             }}
           />
           <button
-            className="searchbtn"
+            className="px-4 py-2 bg-orange-100 m-4 rounded-lg"
             onClick={() => {
               console.log(searchtext);
               const filteredRes = listOfRestaurants.filter((res) =>
@@ -59,8 +58,9 @@ const Body = () => {
             Search
           </button>
         </div>
+        <div className="m-4 p-4 flex items-center">
         <button
-          className="filter_btn"
+          className="px-4 py-2 bg-gray-100 rounded-lg"
           onClick={() => {
             const filterdList = filteredRestaurant.filter(
               (res) => res.info.avgRating > 4.5
@@ -71,8 +71,9 @@ const Body = () => {
         >
           Top Rated Restaurant
         </button>
+        </div>
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap">
         {filteredRestaurant.map((restaurant, index) => (
           <Link
             key={restaurant.info.id}
