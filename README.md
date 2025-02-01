@@ -60,3 +60,12 @@ it is called every time any state if the dependency array is modified/updated.
 #Routing in the web apps
 -Client side routing
 -Server side routing 
+
+#Redux Toolkit
+- Install @reduxjs/toolkit and react-redux
+- Build our store
+- Connect our store to our app
+- SLice (cartSlice)
+- dispatch (action)
+- Selector (subscribing)
+
