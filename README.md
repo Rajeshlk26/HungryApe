@@ -69,3 +69,19 @@ it is called every time any state if the dependency array is modified/updated.
 - dispatch (action)
 - Selector (subscribing)
 
+#Types of testing
+- Unit testing (testing component or small unit in isolation)
+- Integration testing ()
+- End to end testing/ e2e testing
+
+#Setting up testing in our App
+- Install React testing library
+- Install Jest
+- Install Babel Dependencies.
+- Configure Babel
+- Configure Parcel config file to disable babel transpilation
+- Jest Configuration (npx jest --init)
+- Install jsdom library
+- Install @Babel/preset-react - to maek JSX work in test cases
+- Include @babel/preset-react inside my babel config
+- Install npm i -D @testing-library/jest-dom
