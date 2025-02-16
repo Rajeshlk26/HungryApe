@@ -3,10 +3,9 @@ import {CDN_URL} from "../utils/constants"
 
 const RestaurantCard = (props) => {
     const {resData} =props;
-    console.log(resData)
     const {cloudinaryImageId, name, costForTwo, cuisines, avgRating, sla} = resData?.info;
     return(
-      <div className="h-[350px] w-[250px] m-4 p-4 rounded-lg bg-gray-100 hover:bg-gray-200">
+      <div data-testid="resCard" className="h-[350px] w-[250px] m-4 p-4 rounded-lg bg-gray-100 hover:bg-gray-200">
         <img className="h-32 w-full object-cover rounded-lg" src={CDN_URL+ resData.info.cloudinaryImageId} alt="res-image" />
         <div className="flex flex-col leading-6 mt-4">
         <h3 className="font-bold text-lg truncate">{name}</h3>

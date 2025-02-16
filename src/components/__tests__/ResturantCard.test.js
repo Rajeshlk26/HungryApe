@@ -4,7 +4,7 @@ import RestaurantCard from "../RestaurantCard"
 import resCardMock from "../../components/MockData/resCardMock.json"
 
 
-it("should redner restaurantCard component with props Data", () => {
+it("should render restaurantCard component with props Data", () => {
     render(<RestaurantCard resData={resCardMock}/>)
 
     const name =screen.getByText("Pizza Hut")

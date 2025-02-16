@@ -24,7 +24,7 @@ const Body = () => {
         ?.restaurants;
     setlistOfRestaurants(restaurants);
     setFilteredrestaurant(restaurants);
-    console.log(restaurants);
+    // console.log(restaurants);
   };
 
   if(OnlineStatus===false){
@@ -39,6 +39,7 @@ const Body = () => {
         <div className="m-4 p-4">
           <input
             type="text"
+            data-testid = "searchInput"
             className="border border-solid border-black"
             value={searchtext}
             onChange={(e) => {
@@ -63,10 +64,9 @@ const Body = () => {
           className="px-4 py-2 bg-gray-100 rounded-lg"
           onClick={() => {
             const filterdList = filteredRestaurant.filter(
-              (res) => res.info.avgRating > 4.5
-            );
+              (res) => res.info.avgRating > 4.2            );
             setFilteredrestaurant(filterdList);
-            console.log(filterdList);
+            // console.log(filterdList);
           }}
         >
           Top Rated Restaurant
